@@ -3,11 +3,9 @@ import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate";
 const ExpenseItem = ({ title: propTitle, amount, date }) => {
   const [title, setTitle] = useState(propTitle);
-  // console.log("ExpenseItem evaluated by React");
 
   const onHandleClick = () => {
     setTitle("Updated!");
-    // console.log(title);
   };
 
   return (
