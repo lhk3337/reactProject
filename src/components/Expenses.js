@@ -1,25 +1,15 @@
 import React, { useState } from "react";
 import "./Expenses.css";
-import ExpenseItem from "./ExpenseItem";
+
 import ExpensesFilter from "./ExpensesFilter";
 import Card from "./Card";
+import ExpensesList from "./ExpensesList";
 const Expenses = ({ data }) => {
   const [filterYear, setFilterYear] = useState(new Date().getFullYear());
   const DropdownChangeHandler = (selectedYear) => {
     setFilterYear(selectedYear);
   };
   const filtedExpensee = data.filter((value) => value.date.getFullYear() === +filterYear);
-
-  const resultExpesnseContent =
-    filtedExpensee.length === 0 ? (
-      <p className="alert_message">No expense found for the year.</p>
-    ) : (
-      <>
-        {filtedExpensee.map((item) => (
-          <ExpenseItem key={item.id} {...item} />
-        ))}
-      </>
-    );
 
   /**
    *
@@ -33,7 +23,7 @@ const Expenses = ({ data }) => {
     <>
       <Card className="expenses">
         <ExpensesFilter onDropdownChangeHandler={DropdownChangeHandler} />
-        {resultExpesnseContent}
+        <ExpensesList filtedExpensee={filtedExpensee} />
       </Card>
     </>
   );
