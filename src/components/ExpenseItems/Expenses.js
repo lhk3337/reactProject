@@ -4,6 +4,7 @@ import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
 import Card from "./Card";
 import ExpensesList from "./ExpensesList";
+
 const Expenses = ({ data }) => {
   const [filterYear, setFilterYear] = useState(new Date().getFullYear());
   const DropdownChangeHandler = (selectedYear) => {

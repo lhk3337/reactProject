@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
+
 const NewExpense = ({ onAddExpense }) => {
   const [isCloseNewExpense, setIsCloseNewExpense] = useState(true);
   const saveExpenseDataHandler = (enteredExpenseData) => {
@@ -13,6 +14,7 @@ const NewExpense = ({ onAddExpense }) => {
     onAddExpense(expenseInputData);
     setIsCloseNewExpense(true);
   };
+
   const closeNewExpenseClickHandler = (closeData) => {
     setIsCloseNewExpense(closeData);
   };

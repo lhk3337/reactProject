@@ -1,6 +1,7 @@
 import React from "react";
 import "./ExpenseDate.css";
-import getFormattedDate from "../lib/getFormattedDate";
+import getFormattedDate from "../../lib/getFormattedDate";
+
 const ExpenseDate = ({ date }) => {
   const { month, day, year } = getFormattedDate(date);
   return (

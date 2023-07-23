@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
+
 const ExpenseForm = ({ onSaveExpenseDataHandler, onCloseNewExpenseHandler }) => {
   const [values, setValues] = useState({
     title: "",
@@ -32,11 +33,12 @@ const ExpenseForm = ({ onSaveExpenseDataHandler, onCloseNewExpenseHandler }) => 
             <input type="number" value={values.amount} name="amount" min="0.01" step="0.01" onChange={handleChange} />
           </div>
           <div className="new-expense__control">
-            <label>Date</label>
+            <label htmlFor="date">Date</label>
             <input
+              id="date"
               value={values.date}
               type="date"
-              min="2022-01-01"
+              min="2020-01-01"
               max="'2023-12-31"
               name="date"
               onChange={handleChange}
