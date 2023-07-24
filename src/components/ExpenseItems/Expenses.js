@@ -4,6 +4,7 @@ import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
 import Card from "./Card";
 import ExpensesList from "./ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 
 const Expenses = ({ data }) => {
   const [filterYear, setFilterYear] = useState(new Date().getFullYear());
@@ -24,7 +25,8 @@ const Expenses = ({ data }) => {
     <>
       <Card className="expenses">
         <ExpensesFilter onDropdownChangeHandler={DropdownChangeHandler} />
-        <ExpensesList filtedExpensee={filtedExpensee} />
+        <ExpensesChart expenses={filtedExpensee} />
+        <ExpensesList filtedExpenses={filtedExpensee} />
       </Card>
     </>
   );
