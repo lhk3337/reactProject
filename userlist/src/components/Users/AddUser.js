@@ -2,13 +2,21 @@ import React, { useState } from "react";
 import classes from "./AddUser.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-const AddUser = () => {
+const AddUser = ({ onAddUser }) => {
   const [user, setUser] = useState("");
   const [age, setAge] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(user, age);
+    if (user.trim().length === 0 || age.trim().length === 0) {
+      return;
+    }
+    if (+age < 1) {
+      return;
+    }
+    onAddUser({ username: user, age: age, id: new Date().getTime() });
+    setUser("");
+    setAge("");
   };
 
   const handleOnChange = (setState) => (event) => {
