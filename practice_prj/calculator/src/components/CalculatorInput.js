@@ -50,7 +50,7 @@ const CalculatorInput = ({ onAddCalculator, inputstate, state }) => {
           </p>
         </div>
         <p className="actions">
-          <button type="reset" className="buttonAlt" onClick={() => inputstate(true)}>
+          <button type="reset" className="buttonAlt" onClick={() => inputstate(false)}>
             Reset
           </button>
           <button type="submit" className="button">
