@@ -42,7 +42,7 @@ function App() {
     <div>
       <Header />
       <CalculatorInput onAddCalculator={calculateHandler} inputstate={setIsInput} />
-      {!isInput && <p>No investment calculated yet.</p>}
+      {!isInput && <p style={{ textAlign: "center" }}>No investment calculated yet.</p>}
       {isInput && <InvestmentList datas={state} initialInvest={initInvest} />}
     </div>
   );

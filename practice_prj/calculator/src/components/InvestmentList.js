@@ -1,4 +1,5 @@
 import React from "react";
+import classes from "./InvestmentList.module.css";
 const formatter = new Intl.NumberFormat("ko-KR", {
   style: "currency",
   currency: "KRW",
@@ -6,7 +7,7 @@ const formatter = new Intl.NumberFormat("ko-KR", {
 const InvestmentList = ({ datas, initialInvest }) => {
   return (
     <div>
-      <table className="result">
+      <table className={classes.result}>
         <thead>
           <tr>
             <th>Year</th>
