@@ -11,10 +11,14 @@ const CalculatorInput = ({ onAddCalculator, inputstate }) => {
   const handleChange = (event) => {
     setInputData({ ...inputData, [event.target.id]: event.target.value });
   };
-
+  const handleResetClick = () => {
+    inputstate(false);
+    setInputData({ currentSavings: "", yearlySavings: "", expectedReturn: "", duration: "" });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const { currentSavings, yearlySavings, expectedReturn, duration } = inputData;
+
     if (
       currentSavings.trim().length === 0 ||
       yearlySavings.trim().length === 0 ||
@@ -50,7 +54,7 @@ const CalculatorInput = ({ onAddCalculator, inputstate }) => {
           </p>
         </div>
         <p className={classes.actions}>
-          <button type="reset" className={classes.buttonAlt} onClick={() => inputstate(false)}>
+          <button type="reset" className={classes.buttonAlt} onClick={handleResetClick}>
             Reset
           </button>
           <button type="submit" className={classes.button}>
@@ -63,3 +67,8 @@ const CalculatorInput = ({ onAddCalculator, inputstate }) => {
 };
 
 export default CalculatorInput;
+
+/**
+ * ! Calculate 클릭 후 Reset 클릭 후 다시 입력하지 않고 Calculate 클릭하면 전의 내용이 뜨는 현상
+ * TODO reset 버튼 클릭 시 setInputData의 state값을 초기화 값으로 수정하여 해결
+ */
