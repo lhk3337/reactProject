@@ -5,7 +5,8 @@ import FoodItemForm from "./FoodItemForm";
 
 const FoodItem = ({ name, id, description, price: priceValue }) => {
   const cartCtx = useContext(CartContext);
-  const price = `${priceValue.toFixed(2)}`;
+  const price = `$${priceValue.toFixed(2)}`;
+
   const addToCartHandler = (amount) => {
     cartCtx.addItem({
       id,
@@ -14,6 +15,7 @@ const FoodItem = ({ name, id, description, price: priceValue }) => {
       price: priceValue,
     });
   };
+
   return (
     <li className={classes.food}>
       <div>
