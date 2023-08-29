@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, Component } from "react";
 
 import Users from "./Users";
 import classes from "./UserFinder.module.css";
@@ -9,26 +9,58 @@ const DUMMY_USERS = [
   { id: "u3", name: "Julie" },
 ];
 
-const UserFinder = () => {
-  const [filteredUsers, setFilteredUsers] = useState(DUMMY_USERS);
-  const [searchTerm, setSearchTerm] = useState("");
+class UserFinder extends Component {
+  constructor() {
+    super();
+    this.state = {
+      filteredUsers: [],
+      searchTerm: "",
+    };
+  }
+  componentDidMount() {
+    this.setState({ filteredUsers: DUMMY_USERS });
+  } // 처음에 컴포넌트가 마운트되면 실행을 한번한다. fetch로 인해 데이터를 가져올때 사용된다.
 
-  useEffect(() => {
-    setFilteredUsers(DUMMY_USERS.filter((user) => user.name.includes(searchTerm)));
-  }, [searchTerm]);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.searchTerm !== this.state.searchTerm) {
+      this.setState({ filteredUsers: DUMMY_USERS.filter((user) => user.name.includes(this.state.searchTerm)) });
+    }
+  }
+  searchChangeHandler(event) {
+    this.setState({ searchTerm: event.target.value });
+  }
+  render() {
+    return (
+      <Fragment>
+        <div className={classes.finder}>
+          <input type="search" onChange={this.searchChangeHandler.bind(this)} />
+        </div>
+        <Users users={this.state.filteredUsers} />
+      </Fragment>
+    );
+  }
+}
 
-  const searchChangeHandler = (event) => {
-    setSearchTerm(event.target.value);
-  };
+// const UserFinder = () => {
+//   const [filteredUsers, setFilteredUsers] = useState(DUMMY_USERS);
+//   const [searchTerm, setSearchTerm] = useState("");
 
-  return (
-    <Fragment>
-      <div className={classes.finder}>
-        <input type="search" onChange={searchChangeHandler} />
-      </div>
-      <Users users={filteredUsers} />
-    </Fragment>
-  );
-};
+//   useEffect(() => {
+//     setFilteredUsers(DUMMY_USERS.filter((user) => user.name.includes(searchTerm)));
+//   }, [searchTerm]);
+
+//   const searchChangeHandler = (event) => {
+//     setSearchTerm(event.target.value);
+//   };
+
+//   return (
+//     <Fragment>
+//       <div className={classes.finder}>
+//         <input type="search" onChange={searchChangeHandler} />
+//       </div>
+//       <Users users={filteredUsers} />
+//     </Fragment>
+//   );
+// };
 
 export default UserFinder;
