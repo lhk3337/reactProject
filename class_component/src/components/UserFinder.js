@@ -2,14 +2,11 @@ import { Fragment, useState, useEffect, Component } from "react";
 
 import Users from "./Users";
 import classes from "./UserFinder.module.css";
-
-const DUMMY_USERS = [
-  { id: "u1", name: "Max" },
-  { id: "u2", name: "Manuel" },
-  { id: "u3", name: "Julie" },
-];
+import UsersContext from "../store/users-context";
 
 class UserFinder extends Component {
+  static contextType = UsersContext;
+
   constructor() {
     super();
     this.state = {
@@ -18,12 +15,12 @@ class UserFinder extends Component {
     };
   }
   componentDidMount() {
-    this.setState({ filteredUsers: DUMMY_USERS });
+    this.setState({ filteredUsers: this.context.users });
   } // 처음에 컴포넌트가 마운트되면 실행을 한번한다. fetch로 인해 데이터를 가져올때 사용된다.
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchTerm !== this.state.searchTerm) {
-      this.setState({ filteredUsers: DUMMY_USERS.filter((user) => user.name.includes(this.state.searchTerm)) });
+      this.setState({ filteredUsers: this.context.users.filter((user) => user.name.includes(this.state.searchTerm)) });
     }
   }
   searchChangeHandler(event) {
