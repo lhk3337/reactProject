@@ -6,19 +6,29 @@ import "./App.css";
 function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   async function fetchMoviesHandler() {
     setIsLoading(true);
-    const response = await fetch("https://swapi.dev/api/films/");
-    const data = await response.json();
-    const transformData = data.results.map((movieData) => {
-      return {
-        id: movieData.episode_id,
-        title: movieData.title,
-        releaseDate: movieData.release_date,
-        openingText: movieData.opening_crawl,
-      };
-    });
-    setMovies(transformData);
+    setError(null);
+    try {
+      const response = await fetch("https://swapi.dev/api/films/");
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const data = await response.json();
+      const transformData = data.results.map((movieData) => {
+        return {
+          id: movieData.episode_id,
+          title: movieData.title,
+          releaseDate: movieData.release_date,
+          openingText: movieData.opening_crawl,
+        };
+      });
+      setMovies(transformData);
+    } catch (error) {
+      setError(error.message);
+    }
     setIsLoading(false);
   }
 
@@ -42,6 +52,8 @@ function App() {
       <>
         {isLoading ? (
           <div className="lds-dual-ring"></div>
+        ) : error ? (
+          <p>{error}</p>
         ) : movies.length === 0 ? (
           <p>Found No movies</p>
         ) : (
