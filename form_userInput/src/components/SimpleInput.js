@@ -7,6 +7,9 @@ const SimpleInput = (props) => {
   };
   const formSubmitHandler = (event) => {
     event.preventDefault();
+    if (enterName.trim() === "") {
+      return;
+    }
     console.log("stateValue :", enterName);
 
     const enteredValued = nameInputRef.current.value;
