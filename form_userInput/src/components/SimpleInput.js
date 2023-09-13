@@ -1,29 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const SimpleInput = (props) => {
-  const [enterName, setEnterName] = useState("");
-  const [enteredNameIsValid, setEnteredNameIsValud] = useState(false);
+  const [enteredName, setEnteredName] = useState("");
+  // const [enteredNameIsValid, setEnteredNameIsValud] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-
-  useEffect(() => {
-    if (enteredNameIsValid) {
-      console.log("Name Input is valid");
-    }
-  }, [enteredNameIsValid]);
+  const enteredNameIsValid = enteredName.trim() !== "";
+  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   const nameInputChangeHandler = (event) => {
-    setEnterName(event.target.value);
-
-    if (event.target.value.trim() !== "") {
-      setEnteredNameIsValud(true);
-    }
+    setEnteredName(event.target.value);
   };
 
   const nameInputBlurHandler = () => {
     setEnteredNameTouched(true);
-
-    if (enterName.trim() === "") {
-      setEnteredNameIsValud(false);
-    }
   };
 
   const formSubmitHandler = (event) => {
@@ -31,21 +19,19 @@ const SimpleInput = (props) => {
 
     setEnteredNameTouched(true);
 
-    if (enterName.trim() === "") {
-      setEnteredNameIsValud(false);
+    if (!enteredNameIsValid) {
       return;
     }
-    setEnteredNameIsValud(true);
-    console.log("stateValue :", enterName);
 
-    setEnterName("");
+    console.log(enteredName);
+
+    setEnteredName("");
+    setEnteredNameTouched(false);
     /**
      * * ref를 이용한 input value 초기화
      * TODO nameInputRef.current.value = "";
      */
   };
-
-  const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   const nameInputClasses = nameInputIsInvalid ? "form-control invalid" : "form-control";
   return (
@@ -55,7 +41,7 @@ const SimpleInput = (props) => {
         <input
           type="text"
           id="name"
-          value={enterName}
+          value={enteredName}
           onBlur={nameInputBlurHandler}
           onChange={nameInputChangeHandler}
         />
