@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 const SimpleInput = (props) => {
   const [enterName, setEnterName] = useState("");
   const [enteredNameIsValid, setEnteredNameIsValud] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
-
-  const nameInputRef = useRef();
 
   useEffect(() => {
     if (enteredNameIsValid) {
@@ -14,7 +12,20 @@ const SimpleInput = (props) => {
 
   const nameInputChangeHandler = (event) => {
     setEnterName(event.target.value);
+
+    if (event.target.value.trim() !== "") {
+      setEnteredNameIsValud(true);
+    }
   };
+
+  const nameInputBlurHandler = () => {
+    setEnteredNameTouched(true);
+
+    if (enterName.trim() === "") {
+      setEnteredNameIsValud(false);
+    }
+  };
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -27,8 +38,6 @@ const SimpleInput = (props) => {
     setEnteredNameIsValud(true);
     console.log("stateValue :", enterName);
 
-    const enteredValued = nameInputRef.current.value;
-    console.log("refValue :", enteredValued);
     setEnterName("");
     /**
      * * ref를 이용한 input value 초기화
@@ -43,7 +52,13 @@ const SimpleInput = (props) => {
     <form onSubmit={formSubmitHandler}>
       <div className={nameInputClasses}>
         <label htmlFor="name">Your Name</label>
-        <input type="text" id="name" value={enterName} onChange={nameInputChangeHandler} ref={nameInputRef} />
+        <input
+          type="text"
+          id="name"
+          value={enterName}
+          onBlur={nameInputBlurHandler}
+          onChange={nameInputChangeHandler}
+        />
         {nameInputIsInvalid && <p className="error-text">Name must not be empty.</p>}
       </div>
       <div className="form-actions">
