@@ -28,7 +28,10 @@
   border-color: #383838 transparent #383838 transparent;
   animation: dualring 1.2s linear infinite;
 }
-
+.mealsError {
+  text-align: center;
+  color: red;
+}
 @keyframes dualring {
   0% {
     transform: rotate(0deg);
