@@ -5,6 +5,7 @@ import FoodItem from "./FoodItem/FoodItem";
 
 const AvailableFoods = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(process.env.REACT_APP_DB_HOST);
@@ -19,16 +20,16 @@ const AvailableFoods = () => {
         });
       }
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
     fetchMeals();
   }, []);
 
   const foodsList = meals.map((food) => <FoodItem key={food.id} {...food} />);
+
   return (
     <section className={classes.foods}>
-      <Card>
-        <ul>{foodsList}</ul>
-      </Card>
+      <Card>{isLoading ? <div className={classes.dualring} /> : <ul>{foodsList}</ul>}</Card>
     </section>
   );
 };

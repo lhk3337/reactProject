@@ -2,6 +2,7 @@
   max-width: 60rem;
   width: 90%;
   margin: 2rem auto;
+  text-align: center;
   animation: foods-appear 1s ease-out forwards;
 }
 
@@ -9,6 +10,32 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.dualring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.dualring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #383838;
+  border-color: #383838 transparent #383838 transparent;
+  animation: dualring 1.2s linear infinite;
+}
+
+@keyframes dualring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes foods-appear {
