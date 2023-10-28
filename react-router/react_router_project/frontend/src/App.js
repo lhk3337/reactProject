@@ -36,11 +36,13 @@ import EventDetailPage from "./page/EventDetailPage";
 import NewEventPage from "./page/NewEventPage";
 import EditEventPage from "./page/EditEventPage";
 import EventsRootLayout from "./page/EventsRoot";
+import ErrorPage from "./page/Error";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> }, // index: true, 부모 route(여기서는 "/")가 활성화 될 경우 로딩이 되어야 하는 기본 라우트를 정의한다.
       {
