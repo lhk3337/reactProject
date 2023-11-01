@@ -1,6 +1,20 @@
 {
   "events": [
     {
+      "title": "TEST",
+      "image": "https://images.unsplash.com/photo-1486299267070-83823f5448dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3271&q=80e=true&w=640",
+      "date": "2023-10-31",
+      "description": "TEST",
+      "id": "ceda38b2-c9c7-4e34-9242-dc38a309ab3f"
+    },
+    {
+      "title": "A new Event",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Stadtbild_M%C3%BCnchen.jpg",
+      "date": "2023-11-01",
+      "description": "Some awesome event!",
+      "id": "123a6c0f-33f5-43e0-a9e9-37f27b16eaae"
+    },
+    {
       "id": "e1",
       "title": "A dummy event",
       "date": "2023-02-22",
