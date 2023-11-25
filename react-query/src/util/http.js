@@ -44,8 +44,6 @@ export async function createNewEvent(eventData) {
 }
 export async function fetchSelectableImages({ signal }) {
   const response = await fetch(`http://localhost:3000/events/images`, { signal });
-  console.log(signal);
-  console.log(response);
 
   if (!response.ok) {
     const error = new Error("An error occurred while fetching the images");
