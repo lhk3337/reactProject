@@ -17,14 +17,17 @@ const DUMMY_MEETUPS = [
     description: "This is a second meetup",
   },
 ];
-function HomePage() {
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
+function HomePage(props) {
+  return <MeetupList meetups={props.meetups} />;
+}
 
-  useEffect(() => {
-    setLoadedMeetups(DUMMY_MEETUPS);
-  }, []);
-
-  return <MeetupList meetups={loadedMeetups} />;
+export async function getStaticProps() {
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS,
+    },
+    revalidate: 3600,
+  };
 }
 
 export default HomePage;
