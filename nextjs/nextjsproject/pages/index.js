@@ -1,5 +1,7 @@
+import Head from "next/head";
 import { MongoClient } from "mongodb";
 import MeetupList from "../components/meetups/MeetupList";
+import CustomHead from "../components/layout/CustomHead";
 
 const DUMMY_MEETUPS = [
   {
@@ -18,7 +20,12 @@ const DUMMY_MEETUPS = [
   },
 ];
 function HomePage(props) {
-  return <MeetupList meetups={props.meetups} />;
+  return (
+    <>
+      <CustomHead title="React Meetups" content="Browse a huge list of highlt active React meetup!" />
+      <MeetupList meetups={props.meetups} />
+    </>
+  );
 }
 
 export async function getStaticProps() {

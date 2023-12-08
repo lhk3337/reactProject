@@ -1,9 +1,15 @@
 import { MongoClient, ObjectId } from "mongodb";
 
 import MeetupDetail from "../../components/meetups/MeetupDetail";
+import CustomHead from "../../components/layout/CustomHead";
 
 function meetupDetails({ meetupData }) {
-  return <MeetupDetail {...meetupData} />;
+  return (
+    <>
+      <CustomHead title={meetupData.title} content={meetupData.description} />
+      <MeetupDetail {...meetupData} />
+    </>
+  );
 }
 export async function getStaticPaths() {
   const client = await MongoClient.connect("mongodb://localhost:27017/meetupdb");
