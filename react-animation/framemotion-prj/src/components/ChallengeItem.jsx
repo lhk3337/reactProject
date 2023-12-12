@@ -1,5 +1,5 @@
 import { useContext } from "react";
-
+import { motion } from "framer-motion";
 import { ChallengesContext } from "../store/challenges-context.jsx";
 
 export default function ChallengeItem({ challenge, onViewDetails, isExpanded }) {
@@ -38,7 +38,10 @@ export default function ChallengeItem({ challenge, onViewDetails, isExpanded }) 
         <div className="challenge-item-details">
           <p>
             <button onClick={onViewDetails}>
-              View Details <span className="challenge-item-details-icon">&#9650;</span>
+              View Details
+              <motion.span animate={{ rotate: isExpanded ? 180 : 0 }} className="challenge-item-details-icon">
+                &#9650;
+              </motion.span>
             </button>
           </p>
 
