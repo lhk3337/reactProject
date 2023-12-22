@@ -21,7 +21,14 @@ person = {
   age: 32,
 };
 
+// person = {
+//   isEmployee: true,
+// };
+
 let people: {
   name: string;
   age: number;
 }[];
+
+let course = "React";
+// course = 1234;
