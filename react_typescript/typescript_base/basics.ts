@@ -2,9 +2,10 @@ let age: number;
 
 age = 12;
 
-let userName: string;
+let userName: string | string[];
 
 userName = "MAX";
+userName = ["Max", "Tom"];
 
 let isInstructor: boolean;
 
@@ -30,5 +31,5 @@ let people: {
   age: number;
 }[];
 
-let course = "React";
-// course = 1234;
+let course: string | number = "React";
+course = 1234;
