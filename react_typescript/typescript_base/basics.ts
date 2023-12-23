@@ -15,7 +15,12 @@ let hobbies: string[];
 
 hobbies = ["sports", "Cooking"];
 
-let person: any;
+type Person = {
+  name: string;
+  age: number;
+};
+
+let person: Person;
 
 person = {
   name: "Max",
@@ -26,10 +31,7 @@ person = {
 //   isEmployee: true,
 // };
 
-let people: {
-  name: string;
-  age: number;
-}[];
+let people: Person[];
 
 let course: string | number = "React";
 course = 1234;
