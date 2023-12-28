@@ -3,7 +3,7 @@ import "./App.css";
 import Todos from "./components/Todos";
 
 import TodoFunc, { ITodo } from "./models/todo";
-import TodoClass from "./models/todo";
+// import TodoClass from "./models/todo";
 import NewTodo from "./components/NewTodo";
 
 function App() {
@@ -16,10 +16,15 @@ function App() {
       return prevState.concat(newTodo);
     });
   };
+  const removeTodoHandler = (todoId: string) => {
+    setTodos((prevState) => {
+      return prevState.filter((todo) => todo.id !== todoId);
+    });
+  };
   return (
     <div>
       <NewTodo onAddTodo={onAddTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onRemoveTodo={removeTodoHandler} />
     </div>
   );
 }
